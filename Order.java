@@ -9,7 +9,7 @@ public class Order {
     private double totalAmount;
     private Driver driver;
     private String deliveryAddress;
-
+    // Order constructor
     public Order(String orderNumber, Customer customer, Restaurant restaurant, List<Meal> meals, String specialInstructions, Driver driver, String deliveryAddress) {
         this.orderNumber = orderNumber;
         this.customer = customer;
@@ -20,15 +20,15 @@ public class Order {
         this.deliveryAddress = deliveryAddress;
         this.totalAmount = calculateTotalAmount();
     }
-
+    // Calculate the total amount of the meal
     private double calculateTotalAmount() {
         double total = 0;
-        for (Meal meal : meals) {
+        for (Meal meal : meals) { // Iterate meals and add price to total
             total += meal.getPrice();
         }
         return total;
     }
-
+    // Create an invoice with all the details
     public void generateInvoice() {
         String invoice = "Order Number: " + orderNumber + "\n";
         invoice += "Customer: " + customer.getName() + "\n";
@@ -36,7 +36,7 @@ public class Order {
         invoice += "Phone Number: " + customer.getContactNumber() + "\n";
         invoice += "Location: " + customer.getAddress() + "\n";
         invoice += "You have ordered the following from " + restaurant.getName() + " in " + restaurant.getLocation() + ":\n";
-
+        // Loop trough meals and add to invoice
         for (Meal meal : meals) {
             invoice += meal.getName() + " (" + meal.getPrice() + ")\n";
         }
